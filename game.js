@@ -22,26 +22,21 @@ $(".btn").click(function() {
 
 function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-    console.log("success");
     if (userClickedPattern.length === gamePattern.length) {
       setTimeout(function() {
         nextSequence();
       }, 1000);
     }
-    } else {
-      console.log("wrong");
-      function playSound() {
-        var audio = new Audio("wrong.mp3");
-        audio.play();
-      }
-      $("body").addClass("game-over");
-      setTimeout(function() {
-        $("body").removeClass("game-over");
-      }, 200);
-      $("#level-title").text("Game over, press any key to restart.");
-    }
+  } else {
+    playSound("wrong");
+    $("body").addClass("game-over");
+    $("#level-title").text("Game Over, Press Any Key to Restart");
+    setTimeout(function () {
+      $("body").removeClass("game-over");
+    }, 200);
     startOver();
   }
+}
 
   function nextSequence() {
     userClickedPattern = [];
